@@ -1,0 +1,66 @@
+body {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+}
+.mainContainer {
+    display: flex;
+    flex-flow: column wrap;
+    margin-top: 200px;
+    width: 55vh;
+    height: 65vh;
+    border: solid black 3px;
+    background-color: darkolivegreen;
+    align-items: center;
+}
+.display {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10%;
+    width: 85%;
+    height: 15%;
+    border: solid brown 5px;
+    background-color: cadetblue;
+    font-size: 40px;
+    justify-content: center;
+    align-items: center;
+}
+.visuals {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 85%;
+    padding-right: 5%;
+    border: solid darkslategrey 2px;
+    background-color: darkcyan;
+    color: black;
+    font-size: 95%;
+    font-weight: bold;
+    justify-content: end;
+    align-items: center;
+}
+.buttonCase {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: 65%;
+    height: 57%;
+    padding: 5% 10%;
+    margin-top: 5%;
+    border: solid black;
+    background-color: burlywood;
+    gap: 20px;
+}
+.button {
+    display: flex;
+    flex: 1 0 auto;
+    border: solid black 3px;
+    background-color: brown;
+    text-align: center;
+    justify-content: center;
+    width: 80px;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+}
