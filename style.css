@@ -3,6 +3,7 @@ body {
     flex-flow: column wrap;
     align-items: center;
     justify-content: center;
+    background: radial-gradient(circle at 50%, #857f7f, #201f1f 50%, #746969 75%, #413f3f 75%);
 }
 .mainContainer {
     display: flex;
@@ -11,6 +12,7 @@ body {
     width: 55vh;
     height: 65vh;
     border: solid black 3px;
+    border-radius: 10%;
     background-color: darkolivegreen;
     align-items: center;
 }
@@ -21,6 +23,7 @@ body {
     width: 85%;
     height: 15%;
     border: solid brown 5px;
+    border-radius: 10px;
     background-color: cadetblue;
     font-size: 40px;
     justify-content: center;
@@ -35,7 +38,7 @@ body {
     border: solid darkslategrey 2px;
     background-color: darkcyan;
     color: black;
-    font-size: 95%;
+    font-size: 100%;
     font-weight: bold;
     justify-content: end;
     align-items: center;
@@ -49,18 +52,26 @@ body {
     padding: 5% 10%;
     margin-top: 5%;
     border: solid black;
+    border-radius: 5px;
     background-color: burlywood;
     gap: 20px;
 }
-.button {
+.button,
+#clear {
     display: flex;
     flex: 1 0 auto;
     border: solid black 3px;
+    border-radius: 10px;
     background-color: brown;
     text-align: center;
     justify-content: center;
-    width: 80px;
-    height: 50px;
+    width: 20%;
+    height: 13%;
     font-size: 25px;
     font-weight: bold;
 }
+button:hover,
+#clear:hover{
+    background-color: darkred;
+    color: darkgray;
+  }
