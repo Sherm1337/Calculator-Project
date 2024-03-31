@@ -1,11 +1,14 @@
 var visual = document.querySelector(".visuals");
 
+
 visual.textContent = 0;
 
 var operator = "";
 var num1 = 0;
 var num2 = 0;
 var total = 0;
+
+var hasDecimal = false;
 
 const one = document.querySelector("#one");
 const two = document.querySelector("#two");
@@ -22,6 +25,9 @@ const equals = document.querySelector("#equals");
 const addition = document.querySelector("#addition");
 const subtraction = document.querySelector("#subtraction");
 const multiplication = document.querySelector("#multiplication");
+const division = document.querySelector("#division");
+const changeSign = document.querySelector("#changeSign");
+const decimal = document.querySelector("#decimalPoint");
 
 one.addEventListener("click", () => {
     if (visual.textContent === '0') {
@@ -99,74 +105,148 @@ zero.addEventListener("click", () => {
         visual.textContent += zero.textContent;
 })
 
+changeSign.addEventListener("click", () => {
+    if(parseFloat(visual.textContent) > 0){
+        visual.textContent = "-" + parseFloat(visual.textContent);
+        visual.textContent = parseFloat(visual.textContent);
+    }else if(parseFloat(visual.textContent) < 0){
+        visual.textContent = parseFloat(visual.textContent) * -1;
+    }
+})
+
+decimal.addEventListener("click", () => {
+    if(hasDecimal == false){
+    visual.textContent = parseFloat(visual.textContent) + ".";
+    visual.textContent = parseFloat(visual.textContent);
+    hasDecimal = true;
+    }
+})
+
 addition.addEventListener("click", () => {
-    if(num1 == 0){
-    num1 = parseInt(visual.textContent);
-    operator = "+";
-    visual.textContent = 0;
-    }else if(num1 !== 0 && total == 0){
-        num2 = parseInt(visual.textContent);
-        operator = "+";
-        num1 = num1 + num2;
-        visual.textContent = 0;
-    }else if(num1 !== 0 && total !== 0){
-        num2 = parseInt(visual.textContent);
-        operator = "+";
-        num1 = num1 + num2;
-        visual.textContent = 0;
+    if(num1 && total !== 0){
         total = 0;
-    }else if(total !== 0){
-        num1 = total;
-        num2 = 0;
-        operator = "+"
+        visual.textContent = 0;
+        operator = "+";
+    }else if(num2 && total == 0 && num1 !== 0){
+        operator = "+";
+        num1 = parseFloat(num1) + parseFloat(visual.textContent);
+        visual.textContent = 0;
+    }else if(num1 !== 0 && total == 0) {
+        num2 = parseFloat(visual.textContent);
+        operator = "+";
+        num1 = num1 + num2;
+        visual.textContent = 0;
+    }else if(num1 == 0 && total == 0 && num2 == 0){
+        num1 = parseFloat(visual.textContent);
+        operator = "+";
         visual.textContent = 0;
     }
 })
 
 subtraction.addEventListener("click", () => {
-    if(num1 == 0){
-    num1 = parseInt(visual.textContent);
-    operator = "-";
-    visual.textContent = 0;
-    }else if(num1 !== 0){
-        num2 = parseInt(visual.textContent);
+    if(num1 && total !== 0){
+        total = 0;
+        visual.textContent = 0;
+        operator = "-";
+    }else if(num2 && total == 0 && num1 !== 0){
+        operator = "-";
+        num1 = parseFloat(num1) - parseFloat(visual.textContent);
+        visual.textContent = 0;
+    }else if(num1 !== 0 && total == 0) {
+        num2 = parseFloat(visual.textContent);
         operator = "-";
         num1 = num1 - num2;
+        visual.textContent = 0;
+    }else if(num1 == 0 && total == 0 && num2 == 0){
+        num1 = parseFloat(visual.textContent);
+        operator = "-";
         visual.textContent = 0;
     }
 })
 
 multiplication.addEventListener("click", () => {
-    if(num1 == 0){
-    num1 = parseInt(visual.textContent);
-    operator = "*";
-    visual.textContent = 0;
-    }else if(num1 !== 0){
-        num2 = parseInt(visual.textContent);
+    if(num1 && total !== 0){
+        total = 0;
+        visual.textContent = 0;
+        operator = "*";
+    }else if(num2 && total == 0 && num1 !== 0){
+        operator = "*";
+        num1 = parseFloat(num1) * parseFloat(visual.textContent);
+        visual.textContent = 0;
+    }else if(num1 !== 0 && total == 0) {
+        num2 = parseFloat(visual.textContent);
         operator = "*";
         num1 = num1 * num2;
+        visual.textContent = 0;
+    }else if(num1 == 0 && total == 0 && num2 == 0){
+        num1 = parseFloat(visual.textContent);
+        operator = "*";
+        visual.textContent = 0;
+    }
+})
+
+division.addEventListener("click", () => {
+    if(num1 == Infinity || num1 == NaN || num2 == Infinity){
+        visual.textContent = "ERROR";
+        num1 = 0;
+        num2 = 0;
+        total = 0;
+    }else if(num1 && total !== 0){
+        total = 0;
+        visual.textContent = 0;
+        operator = "/";
+    }else if(num2 && total == 0 && num1 !== 0){
+        operator = "/";
+        num1 = parseFloat(num1) / parseFloat(visual.textContent);
+        visual.textContent = 0;
+    }else if(num1 !== 0 && total == 0) {
+        num2 = parseFloat(visual.textContent);
+        operator = "/";
+        num1 = num1 / num2;
+        visual.textContent = 0;
+    }else if(num1 == 0 && total == 0 && num2 == 0){
+        num1 = parseFloat(visual.textContent);
+        operator = "/";
         visual.textContent = 0;
     }
 })
 
 equals.addEventListener("click", () => {
-    num2 = parseInt(visual.textContent);
+    num2 = parseFloat(visual.textContent);
     operate();
 })
 
 function operate(){
     if(operator == "+"){
-        total = parseInt(num1) + parseInt(num2);
-        visual.textContent = parseInt(num1) + parseInt(num2);
+        total = parseFloat(num1) + parseFloat(num2);
+        visual.textContent = parseFloat(total);
+        num2 = 0;
     }else if(operator === "-"){
-        num2 = parseInt(visual.textContent);
-        visual.textContent = parseInt(num1) - parseInt(num2);
+        total = parseFloat(num1) - parseFloat(num2);
+        visual.textContent = parseFloat(total);
+        num2 = 0;
     }else if(operator === "*"){
-        visual.textContent = parseInt(num1) * parseInt(num2);
+        total = parseFloat(num1) * parseFloat(num2);
+        visual.textContent = parseFloat(total);
+        num2 = 0;
     }else if(operator === "/"){
-        visual.textContent = parseInt(num1) / parseInt(num2);
+        if(num1 == Infinity || num1 == NaN){
+            visual.textContent = "ERROR";
+            num1 = 0;
+            num2 = 0;
+            total = 0;
+        }else if(num2 == 0){
+            visual.textContent = "ERROR";
+            num1 = 0;
+            num2 = 0;
+            total = 0;
+        }else{
+        total = parseFloat(num1) / parseFloat(num2);
+        visual.textContent = parseFloat(num1) / parseFloat(num2);
+        num2 = 0;
+        }
     }
-    num1 = visual.textContent;
+    num1 = parseFloat(total);
 }
 
 const clear = document.querySelector("#clear");
@@ -175,5 +255,6 @@ clear.addEventListener("click", () =>{
     num1 = 0;
     num2 = 0;
     total = 0;
+    hasDecimal = false;
 }
 );
